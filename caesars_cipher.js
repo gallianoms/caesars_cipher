@@ -1,0 +1,29 @@
+function rot13(str) {
+  const alphabet = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z'
+  const arrAlphabet = alphabet.split(',')
+
+  const plus13 = char => {
+    if (char === ' ') return char
+
+    if (!char.match(/[A-Z]/)) {
+      return char
+    }
+
+    const jumps = arrAlphabet.indexOf(char) + 13
+
+    if (jumps >= 26) {
+      return arrAlphabet[jumps - 26]
+    }
+    return arrAlphabet[jumps]
+  }
+
+  return str
+    .split('')
+    .map(char => plus13(char))
+    .join('')
+}
+
+rot13('SERR PBQR PNZC') // FREE CODE CAMP
+rot13('SERR YBIR?') // FREE LOVE?
+
+// A ↔ N, B ↔ O
